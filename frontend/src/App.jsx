@@ -4,9 +4,9 @@ import React from 'react';
 // import ContactPage from './pages/ContactPage';
 // import AuthPage from './pages/AuthPage';
 // import CartPage from './pages/CartPage';
-// import BlogPage from './pages/BlogPage';
+import BlogPage from './pages/BlogPage';
 // import BlogDetailsPage from './pages/BlogDetailsPage';
-import ProductsDetailsPage from './pages/ProductsDetailsPage';
+// import ProductsDetailsPage from './pages/ProductsDetailsPage';
 import './App.css';
 
 function App() {
@@ -17,9 +17,9 @@ function App() {
     {/* <ContactPage/> */}
     {/* <AuthPage/> */}
     {/* <CartPage/> */}
-    {/* <BlogPage/> */}
+    <BlogPage/>
     {/* <BlogDetailsPage/> */}
-    <ProductsDetailsPage/>
+    {/* <ProductsDetailsPage/> */}
     </React.Fragment>
   );
 }
