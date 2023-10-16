@@ -184,6 +184,8 @@
 .site-main .product-extra-buttons a {
   font-size: 12px;
   color: gray;
+  display: flex;
+  column-gap: 5px;
 }
 
 .site-main .divider {
