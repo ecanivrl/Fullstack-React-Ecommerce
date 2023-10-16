@@ -30,6 +30,9 @@ PrevBtn.propTypes = {
 
 const Products = () => {
   const [productsSlide] = useState(ProductsData);
+  const [cartItems, setCartItems] = useState([]);
+
+  console.log(cartItems.length);
 
   const sliderSettings = {
     dots: false,
@@ -43,17 +46,15 @@ const Products = () => {
     responsive: [
       {
         breakpoint: 992,
-        settings :{
-        slidesToShow: 2,
-
-        }
+        settings: {
+          slidesToShow: 2,
+        },
       },
       {
         breakpoint: 520,
-        settings :{
-        slidesToShow: 1,
-
-        }
+        settings: {
+          slidesToShow: 1,
+        },
       },
     ],
   };
@@ -69,7 +70,11 @@ const Products = () => {
           <div className="glide__track">
             <Slider {...sliderSettings}>
               {productsSlide.map((product) => (
-                <ProductItem product={product} key={product.id} />
+                <ProductItem
+                  productItem={product}
+                  key={product.id}
+                  setCartItems={setCartItems}
+                />
               ))}
             </Slider>
           </div>
