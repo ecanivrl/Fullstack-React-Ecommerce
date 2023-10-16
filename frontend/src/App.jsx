@@ -1,4 +1,5 @@
 import './App.css';
+import Blogs from './components/Blogs/Blogs';
 import Campaigns from './components/Campaigns/Campaigns';
 import Categories from './components/Categories/Categories';
 import Products from './components/Products/Products';
@@ -11,6 +12,7 @@ function App() {
     <Categories/>
     <Products/>
     <Campaigns/>
+    <Blogs/>
     </>
   );
 }
