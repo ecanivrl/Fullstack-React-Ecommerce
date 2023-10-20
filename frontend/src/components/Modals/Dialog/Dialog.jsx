@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const Dialog = ({ isDialogShow, setIsDialogShow }) => {
   const handleCloseDialog = (e) => {
     const checked = e.target.checked;
+    setIsDialogShow(false)
 
     localStorage.setItem('dialog', JSON.stringify(!checked));
   };
