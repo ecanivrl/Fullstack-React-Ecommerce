@@ -4,7 +4,11 @@ import { useContext } from 'react';
 import { CartContext } from '@/context/CartProvider';
 
 const ProductItem = ({ productItem }) => {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cartItems } = useContext(CartContext);
+
+  const filteredCart = cartItems.find(
+    (cartItem) => cartItem.id === productItem.id
+  );
 
   return (
     <div className="product-item glide__slide glide__slide--active">
@@ -50,6 +54,7 @@ const ProductItem = ({ productItem }) => {
         <span className="product-discount">{productItem?.discount}%</span>
         <div className="product-links">
           <button
+            disabled={filteredCart}
             className="add-to-cart"
             onClick={() => addToCart(productItem)}
           >

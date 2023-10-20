@@ -10,7 +10,7 @@ const CartProvider = ({ children }) => {
   );
 
   // ! save to local storage
-  
+
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
@@ -20,10 +20,18 @@ const CartProvider = ({ children }) => {
     setCartItems((prevCart) => [...prevCart, cartItem]);
   };
 
+  const removeFromCart = (itemId) => {
+    const filteredCartItems = cartItems.filter((cartItem) => {
+      return cartItem.id !== itemId;
+    });
+    setCartItems(filteredCartItems);
+  };
+
   return (
     <CartContext.Provider
       value={{
         addToCart,
+        removeFromCart,
         cartItems,
       }}
     >
