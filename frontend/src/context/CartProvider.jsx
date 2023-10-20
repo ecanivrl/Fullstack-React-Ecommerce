@@ -17,7 +17,13 @@ const CartProvider = ({ children }) => {
 
   const addToCart = (cartItem) => {
     // setCartItems([...cartItems, product]) 1. YOL
-    setCartItems((prevCart) => [...prevCart, cartItem]);
+    setCartItems((prevCart) => [
+      ...prevCart,
+      {
+        ...cartItem,
+        quantity: cartItem.quantity ? cartItem.quantity : 1,
+      },
+    ]);
   };
 
   const removeFromCart = (itemId) => {
