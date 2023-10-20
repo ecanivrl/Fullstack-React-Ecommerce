@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { CartContext } from '@/context/CartProvider';
 import './Header.css';
-import PropTypes from "prop-types"
 
 const Header = ({ setIsSearchShow }) => {
+  const { cartItems } = useContext(CartContext);
+
   return (
     <header>
       <div className="global-notification">
@@ -190,7 +194,10 @@ const Header = ({ setIsSearchShow }) => {
                 <a href="account.html" className="header-account">
                   <i className="bi bi-person"></i>
                 </a>
-                <button className="search-button" onClick={() => setIsSearchShow(true)}>
+                <button
+                  className="search-button"
+                  onClick={() => setIsSearchShow(true)}
+                >
                   <i className="bi bi-search"></i>
                 </button>
                 <a href="#">
@@ -199,7 +206,9 @@ const Header = ({ setIsSearchShow }) => {
                 <div className="header-cart">
                   <a href="cart.html" className="header-cart-link">
                     <i className="bi bi-bag"></i>
-                    <span className="header-cart-count">0</span>
+                    <span className="header-cart-count">
+                      {cartItems?.length ? cartItems.length : 0}
+                    </span>
                   </a>
                 </div>
               </div>
@@ -212,7 +221,6 @@ const Header = ({ setIsSearchShow }) => {
 };
 
 export default Header;
-
 
 Header.propTypes = {
   setIsSearchShow: PropTypes.func,
