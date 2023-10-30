@@ -1,20 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-
 const app = express();
+const mainRoute = require('./routes/index.js');
 const port = 5000;
 
 dotenv.config();
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI,
-      //   {
-      //     useNewUrlParser: true,
-      //     useUnifiedTopology: true,
-      //     useCreateIndex: true
-      //   }
+    await mongoose.connect(
+      process.env.MONGO_URI,
       console.log('MongoDB bağlantısı başarılı')
     );
   } catch (error) {
@@ -22,11 +18,9 @@ const connect = async () => {
   }
 };
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use('/api', mainRoute);
 
 app.listen(port, () => {
-    connect();
+  connect();
   console.log(`sunucu ${port} portunda çalışıyor ...`);
 });
