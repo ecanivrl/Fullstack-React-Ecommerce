@@ -28,7 +28,7 @@ router.get('/', async (rea, res) => {
   }
 });
 
-// ! Tek bir kategori getirme (READ ONE)
+// ! Tek bir kategori getirme ID ye göre (READ ONE)
 
 router.get('/:categoryId', async (req, res) => {
   try {
