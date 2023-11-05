@@ -49,36 +49,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// ! Bütün kullanıcıları getirme (GET)
 
-router.get('/register', async (rea, res) => {
-  try {
-    const users = await User.find();
-    res.status(200).json(users);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ errorMessage: 'Server Error' });
-  }
-});
-
-// ! Tek bir kullanıcı getirme (READ ONE)
-
-router.get('/register/:userId', async (req, res) => {
-  try {
-    const userId = req.params.userId;
-
-    try {
-      const user = await User.findById(userId);
-      res.status(200).json(user);
-    } catch (error) {
-      console.log(error);
-      res.status(404).json({ errorMessage: 'Kullanıcı bulunamadı' });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ errorMessage: 'Server Error' });
-  }
-});
 
 // ! Kullanıcı girişi (LOGİN)
 
