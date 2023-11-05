@@ -7,7 +7,7 @@ import './Header.css';
 const Header = ({ setIsSearchShow }) => {
   const { cartItems } = useContext(CartContext);
   const { pathname } = useLocation();
-  console.log('pathname', pathname);
+  const user = localStorage.getItem('user');
 
   return (
     <header>
@@ -75,7 +75,12 @@ const Header = ({ setIsSearchShow }) => {
                     </div>
                   </li>
                   <li className="menu-list-item megamenu-wrapper">
-                    <Link to={'/shop'}  className={`menu-link ${pathname === '/shop' && 'active'}`}>
+                    <Link
+                      to={'/shop'}
+                      className={`menu-link ${
+                        pathname === '/shop' && 'active'
+                      }`}
+                    >
                       Shop
                       <i className="bi bi-chevron-down"></i>
                     </Link>
@@ -182,12 +187,22 @@ const Header = ({ setIsSearchShow }) => {
                     </div>
                   </li>
                   <li className="menu-list-item">
-                    <Link to={'/blog'}  className={`menu-link ${pathname === '/blog' && 'active'}`}>
+                    <Link
+                      to={'/blog'}
+                      className={`menu-link ${
+                        pathname === '/blog' && 'active'
+                      }`}
+                    >
                       Blog
                     </Link>
                   </li>
                   <li className="menu-list-item">
-                    <Link to={'/contact'}  className={`menu-link ${pathname === '/contact' && 'active'}`}>
+                    <Link
+                      to={'/contact'}
+                      className={`menu-link ${
+                        pathname === '/contact' && 'active'
+                      }`}
+                    >
                       Contact
                     </Link>
                   </li>
@@ -197,7 +212,7 @@ const Header = ({ setIsSearchShow }) => {
             </div>
             <div className="header-right">
               <div className="header-right-links">
-                <Link to={"/auth"} className="header-account">
+                <Link to={'/auth'} className="header-account">
                   <i className="bi bi-person"></i>
                 </Link>
                 <button
@@ -206,17 +221,34 @@ const Header = ({ setIsSearchShow }) => {
                 >
                   <i className="bi bi-search"></i>
                 </button>
-                <a href="#">
+                {/* <a href="#">
                   <i className="bi bi-heart"></i>
-                </a>
+                </a> */}
                 <div className="header-cart">
-                  <Link to={"/cart"} className="header-cart-link">
+                  <Link to={'/cart'} className="header-cart-link">
                     <i className="bi bi-bag"></i>
                     <span className="header-cart-count">
                       {cartItems?.length ? cartItems.length : 0}
                     </span>
                   </Link>
                 </div>
+                {user && (
+                  <button
+                    className="search-button"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          'Çıkış yapmak istediginize emin misiniz ?'
+                        )
+                      ) {
+                        localStorage.removeItem('user');
+                        window.location.href = '/';
+                      }
+                    }}
+                  >
+                    <i className="bi bi-box-arrow-right"></i>
+                  </button>
+                )}
               </div>
             </div>
           </div>
