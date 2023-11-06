@@ -9,6 +9,13 @@ const Header = ({ setIsSearchShow }) => {
   const { pathname } = useLocation();
   const user = localStorage.getItem('user');
 
+  const logOut = () => {
+    if (window.confirm('Çıkış yapmak istediginize emin misiniz ?')) {
+      localStorage.removeItem('user');
+      window.location.href = '/';
+    }
+  };
+
   return (
     <header>
       <div className="global-notification">
@@ -233,19 +240,7 @@ const Header = ({ setIsSearchShow }) => {
                   </Link>
                 </div>
                 {user && (
-                  <button
-                    className="search-button"
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          'Çıkış yapmak istediginize emin misiniz ?'
-                        )
-                      ) {
-                        localStorage.removeItem('user');
-                        window.location.href = '/';
-                      }
-                    }}
-                  >
+                  <button className="search-button" onClick={logOut}>
                     <i className="bi bi-box-arrow-right"></i>
                   </button>
                 )}

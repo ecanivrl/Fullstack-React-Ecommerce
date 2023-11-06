@@ -15,13 +15,20 @@ import { useNavigate } from 'react-router-dom';
 const { Sider, Header, Content } = Layout;
 
 const getUserRole = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  return user ? user.role : null
-} 
+  const user = JSON.parse(localStorage.getItem('user'));
+  return user ? user.role : null;
+};
 
 const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
   const userRole = getUserRole();
+
+  const logOut = () => {
+    if (window.confirm('Çıkış yapmak istediginize emin misiniz ?')) {
+      localStorage.removeItem('admin');
+      window.location.href = '/';
+    }
+  };
 
   const menuItems = [
     {
@@ -134,13 +141,11 @@ const AdminLayout = ({ children }) => {
       icon: <LogoutOutlined />,
       label: 'Çıkış Yap',
       path: '/auth',
-      onClick: () => {
-        navigate('/auth');
-      },
+      onClick: logOut,
     },
   ];
-  
-  if(userRole === 'admin'){
+
+  if (userRole === 'admin') {
     return (
       <div className="admin-layout">
         <Layout
@@ -184,11 +189,9 @@ const AdminLayout = ({ children }) => {
         </Layout>
       </div>
     );
-  }else{
-   return window.location.href = "/"
+  } else {
+    return (window.location.href = '/');
   }
-
-  
 };
 
 export default AdminLayout;
