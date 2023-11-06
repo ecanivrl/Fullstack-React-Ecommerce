@@ -8,25 +8,29 @@ import AuthPage from './pages/AuthPage';
 import ProductsDetailsPage from './pages/ProductsDetailsPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
 
+import UserPage from './pages/Admin/UserPage';
+import CategoryPage from './pages/Admin/Categories/CategoryPage';
 import './App.css';
-import AdminUserPage from './pages/admin/AdminUserPage';
+import UpdateCategoriPage from './pages/Admin/Categories/UpdateCategoriPage';
+import CreateCategoryPage from './pages/Admin/Categories/CreateCategoryPage';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage/>} />
-      <Route path="/shop" element={<ShopPage/>} />
-      <Route path="/blog" element={<BlogPage/>} />
-      <Route path="/contact" element={<ContactPage/>} />
-      <Route path="/cart" element={<CartPage/>} />
-      <Route path="/auth" element={<AuthPage/>} />
-      <Route path="/product/:id" element={<ProductsDetailsPage/>} />
-      <Route path="/blog/:id" element={<BlogDetailsPage/>} />
-      <Route path='/admin/*'>
-
-      <Route path='users' element={<AdminUserPage/>} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/shop" element={<ShopPage />} />
+      <Route path="/blog" element={<BlogPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/cart" element={<CartPage />} />
+      <Route path="/auth" element={<AuthPage />} />
+      <Route path="/product/:id" element={<ProductsDetailsPage />} />
+      <Route path="/blog/:id" element={<BlogDetailsPage />} />
+      <Route path="/admin/*">
+        <Route path="users" element={<UserPage />} />
+        <Route path="categories" element={<CategoryPage />} />
+        <Route path="categories/create" element={<CreateCategoryPage />} />
+        <Route path="categories/update/:id" element={<UpdateCategoriPage />} />
       </Route>
-
     </Routes>
   );
 }
