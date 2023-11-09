@@ -27,9 +27,6 @@ const ProductSchema = mongoose.Schema(
       ref: 'Category',
     },
 
-    category: { type: String, required: true },
-    stock: { type: Number, default: 0 },
-    sold: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
