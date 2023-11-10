@@ -17,7 +17,9 @@
 }
 
 .categories .category-item .category-image{
-        width: 100%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
         transition: transform ease .2s;
 }
 
