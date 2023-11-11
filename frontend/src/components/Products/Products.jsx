@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react';
-import ProductItem from './ProductItem';
-import './Products.css';
-import PropTypes from 'prop-types';
-import Slider from 'react-slick';
-import { message } from 'antd';
+import { useEffect, useState } from "react";
+import ProductItem from "./ProductItem";
+import Slider from "react-slick";
+import PropTypes from "prop-types";
+import "./Products.css";
+import { message } from "antd";
 
 function NextBtn({ onClick }) {
   return (
-    <button onClick={onClick} className="glide__arrow glide__arrow--right">
+    <button className="glide__arrow glide__arrow--right" onClick={onClick}>
       <i className="bi bi-chevron-right"></i>
-    </button>
-  );
-}
-function PrevBtn({ onClick }) {
-  return (
-    <button onClick={onClick} className="glide__arrow glide__arrow--left">
-      <i className="bi bi-chevron-left"></i>
     </button>
   );
 }
@@ -23,6 +16,14 @@ function PrevBtn({ onClick }) {
 NextBtn.propTypes = {
   onClick: PropTypes.func,
 };
+
+function PrevBtn({ onClick }) {
+  return (
+    <button className="glide__arrow glide__arrow--left" onClick={onClick}>
+      <i className="bi bi-chevron-left"></i>
+    </button>
+  );
+}
 
 PrevBtn.propTypes = {
   onClick: PropTypes.func,
@@ -56,10 +57,10 @@ const Products = () => {
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
     nextArrow: <NextBtn />,
     prevArrow: <PrevBtn />,
+    autoplaySpeed: 3000,
+    autoplay: true,
     responsive: [
       {
         breakpoint: 992,
@@ -84,13 +85,11 @@ const Products = () => {
           <p>Summer Collection New Morden Design</p>
         </div>
         <div className="product-wrapper product-carousel">
-          <div className="glide__track">
-            <Slider {...sliderSettings}>
-              {products.map((product) => (
-                <ProductItem productItem={product} key={product._id} />
-              ))}
-            </Slider>
-          </div>
+          <Slider {...sliderSettings}>
+            {products.map((product) => (
+              <ProductItem productItem={product} key={product._id} />
+            ))}
+          </Slider>
         </div>
       </div>
     </section>

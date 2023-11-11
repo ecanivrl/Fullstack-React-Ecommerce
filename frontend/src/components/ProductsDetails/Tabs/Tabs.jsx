@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import Reviews from '../../Reviews/Reviews';
-import PropTypes from 'prop-types';
-import './Tabs.css';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import Reviews from "../../Reviews/Reviews";
+import "./Tabs.css";
 
-const Tabs = ({singleProduct}) => {
-  const [activeTab, setActiveTab] = useState('desc');
+const Tabs = ({ singleProduct, setSingleProduct }) => {
+  const [activeTab, setActiveTab] = useState("desc");
 
   const handleTabClick = (e, tab) => {
     e.preventDefault();
@@ -17,8 +17,8 @@ const Tabs = ({singleProduct}) => {
         <li>
           <a
             href="#"
-            className={`tab-button ${activeTab === 'desc' ? 'active' : ''}`}
-            onClick={(e) => handleTabClick(e, 'desc')}
+            className={`tab-button ${activeTab === "desc" ? "active" : ""}`}
+            onClick={(e) => handleTabClick(e, "desc")}
           >
             Description
           </a>
@@ -26,8 +26,8 @@ const Tabs = ({singleProduct}) => {
         <li>
           <a
             href="#"
-            className={`tab-button ${activeTab === 'info' ? 'active' : ''}`}
-            onClick={(e) => handleTabClick(e, 'info')}
+            className={`tab-button ${activeTab === "info" ? "active" : ""}`}
+            onClick={(e) => handleTabClick(e, "info")}
           >
             Additional information
           </a>
@@ -35,8 +35,8 @@ const Tabs = ({singleProduct}) => {
         <li>
           <a
             href="#"
-            className={`tab-button ${activeTab === 'reviews' ? 'active' : ''}`}
-            onClick={(e) => handleTabClick(e, 'reviews')}
+            className={`tab-button ${activeTab === "reviews" ? "active" : ""}`}
+            onClick={(e) => handleTabClick(e, "reviews")}
           >
             Reviews
           </a>
@@ -45,17 +45,17 @@ const Tabs = ({singleProduct}) => {
       <div className="tab-panel">
         <div
           className={`tab-panel-descriptions content ${
-            activeTab === 'desc' ? 'active' : ''
+            activeTab === "desc" ? "active" : ""
           }`}
         >
-           <p
-        className="product-description"
-        dangerouslySetInnerHTML={{ __html: singleProduct.description }}
-      ></p>
+          <div
+            className="product-description"
+            dangerouslySetInnerHTML={{ __html: singleProduct.description }}
+          ></div>
         </div>
         <div
           className={`tab-panel-information content ${
-            activeTab === 'info' ? 'active' : ''
+            activeTab === "info" ? "active" : ""
           }`}
           id="info"
         >
@@ -74,20 +74,23 @@ const Tabs = ({singleProduct}) => {
               <tr>
                 <th>Size</th>
                 <td>
-                  <p>{
-                    singleProduct?.sizes?.map((item,index)=> (
-                      <span key={index}>{item.toUpperCase()}
-                      {index < singleProduct.sizes.length -1 && ", "}
+                  <p>
+                    {singleProduct.sizes.map((item, index) => (
+                      <span key={index}>
+                        {item.toUpperCase()}
+                        {index < singleProduct.sizes.length - 1 && ", "}
                       </span>
-                    ))}</p>
+                    ))}
+                  </p>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <Reviews
-        singleProduct={singleProduct}
-          active={activeTab === 'reviews' ? 'content active' : 'content'}
+          active={activeTab === "reviews" ? "content active" : "content"}
+          singleProduct={singleProduct}
+          setSingleProduct={setSingleProduct}
         />
       </div>
     </div>
@@ -98,4 +101,5 @@ export default Tabs;
 
 Tabs.propTypes = {
   singleProduct: PropTypes.object,
+  setSingleProduct: PropTypes.func,
 };
