@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import './ProductItem.css';
-import { useContext } from 'react';
-import { CartContext } from '@/context/CartProvider';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartProvider";
+import "./ProductItem.css";
+import { Link } from "react-router-dom";
 
 const ProductItem = ({ productItem }) => {
-  const { addToCart, cartItems } = useContext(CartContext);
+  const { cartItems, addToCart } = useContext(CartContext);
 
   const filteredCart = cartItems.find(
     (cartItem) => cartItem._id === productItem._id
@@ -14,15 +14,16 @@ const ProductItem = ({ productItem }) => {
   const originalPrice = productItem.price.current;
   const discountPercentage = productItem.price.discount;
 
+  // İndirimli fiyatı hesaplama
   const discountedPrice =
     originalPrice - (originalPrice * discountPercentage) / 100;
 
   return (
     <div className="product-item glide__slide glide__slide--active">
       <div className="product-image">
-        <a href="/">
-          <img src={`${productItem?.img?.[0]}`} alt="" className="img1" />
-          <img src={`${productItem?.img?.[1]}`} alt="" className="img2" />
+        <a href="#">
+          <img src={productItem.img[0]} alt="" className="img1" />
+          <img src={productItem.img[1]} alt="" className="img2" />
         </a>
       </div>
       <div className="product-info">
@@ -48,24 +49,19 @@ const ProductItem = ({ productItem }) => {
         </ul>
         <div className="product-prices">
           <strong className="new-price">${discountedPrice.toFixed(2)}</strong>
-          {discountPercentage >= originalPrice ? (
-            <></>
-          ) : (
-            <span className="old-price">${originalPrice.toFixed(2)}</span>
-          )}
+          <span className="old-price">${originalPrice.toFixed(2)}</span>
         </div>
-
-        <span className="product-discount">
-          {productItem?.price?.discount}%
-        </span>
+        <span className="product-discount">-{productItem.price.discount}%</span>
         <div className="product-links">
           <button
-            disabled={filteredCart}
             className="add-to-cart"
-            onClick={() => addToCart({
-              ...productItem,
-              price: discountedPrice
-            })}
+            onClick={() =>
+              addToCart({
+                ...productItem,
+                price: discountedPrice,
+              })
+            }
+            disabled={filteredCart}
           >
             <i className="bi bi-basket-fill"></i>
           </button>
