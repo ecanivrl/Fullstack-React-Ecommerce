@@ -1,22 +1,21 @@
-import { createContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(
-    localStorage.getItem('cartItems')
-      ? JSON.parse(localStorage.getItem('cartItems'))
+    localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
       : []
   );
 
-  // ! save to local storage
-
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addToCart = (cartItem) => {
-    // setCartItems([...cartItems, product]) 1. YOL
+    // setCartItems([...cartItems, cartItem]); 1. yol
     setCartItems((prevCart) => [
       ...prevCart,
       {
@@ -28,17 +27,19 @@ const CartProvider = ({ children }) => {
 
   const removeFromCart = (itemId) => {
     const filteredCartItems = cartItems.filter((cartItem) => {
-      return cartItem.id !== itemId;
+      return cartItem._id !== itemId;
     });
+
     setCartItems(filteredCartItems);
   };
 
   return (
     <CartContext.Provider
       value={{
-        addToCart,
-        removeFromCart,
         cartItems,
+        setCartItems,
+        addToCart,
+        removeFromCart, 
       }}
     >
       {children}

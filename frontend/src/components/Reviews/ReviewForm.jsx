@@ -50,6 +50,7 @@ const ReviewForm = ({ singleProduct, setSingleProduct }) => {
       setReview("");
       setRating(0);
       message.success("Yorum başarıyla eklendi.");
+      window.location.reload()
     } catch (error) {
       console.log(error);
       message.error("Bir şeyler yanlış gitti.");
