@@ -5,13 +5,14 @@ import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ setIsSearchShow }) => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
   const { pathname } = useLocation();
   const user = localStorage.getItem('user');
 
   const logOut = () => {
     if (window.confirm('Çıkış yapmak istediginize emin misiniz ?')) {
       localStorage.removeItem('user');
+      setCartItems([])
       window.location.href = '/';
     }
   };
