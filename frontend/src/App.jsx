@@ -7,9 +7,7 @@ import CartPage from './pages/CartPage';
 import AuthPage from './pages/AuthPage';
 import ProductsDetailsPage from './pages/ProductsDetailsPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
-
 import UserPage from './pages/Admin/UserPage';
-import './App.css';
 import CreateCategoryPage from './pages/Admin/Categories/CreateCategoryPage';
 import UpdateCategoryPage from './pages/Admin/Categories/UpdateCategoryPage';
 import ProductPage from './pages/Admin/Products/ProductPage';
@@ -19,6 +17,11 @@ import CouponPage from './pages/Admin/Coupons/CouponPage';
 import CreateCouponPage from './pages/Admin/Coupons/CreateCouponPage';
 import UpdateCouponPage from './pages/Admin/Coupons/UpdateCouponPage';
 import CategoryPage from './pages/Admin/Categories/CategoryPage';
+import Success from './pages/Success';
+import OrderPage from './pages/Admin/OrderPage';
+
+import './App.css';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
@@ -31,7 +34,9 @@ function App() {
       <Route path="/auth" element={<AuthPage />} />
       <Route path="/product/:id" element={<ProductsDetailsPage />} />
       <Route path="/blog/:id" element={<BlogDetailsPage />} />
+      <Route path="/success" element={<Success />} />
       <Route path="/admin/*">
+        <Route index element={<DashboardPage />} />
         <Route path="users" element={<UserPage />} />
         <Route path="categories" element={<CategoryPage />} />
         <Route path="categories/create" element={<CreateCategoryPage />} />
@@ -39,11 +44,10 @@ function App() {
         <Route path="products" element={<ProductPage />} />
         <Route path="products/create" element={<CreateProductPage />} />
         <Route path="products/update/:id" element={<UpdateProductPage />} />
-        <Route path='coupons' element={<CouponPage />} />
+        <Route path="coupons" element={<CouponPage />} />
         <Route path="coupons/create" element={<CreateCouponPage />} />
         <Route path="coupons/update/:id" element={<UpdateCouponPage />} />
-
-
+        <Route path="orders" element={<OrderPage />} />
       </Route>
     </Routes>
   );

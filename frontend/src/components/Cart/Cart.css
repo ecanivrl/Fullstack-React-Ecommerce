@@ -7,6 +7,19 @@
   justify-content: space-between;
 }
 
+/* SPİN CSS */
+
+.cart-totals .ant-spin{
+  display: flex;
+  justify-content: center;
+}
+
+.cart-totals .ant-spin .ant-spin-dot{
+  position: relative !important;
+  inset-inline-start: unset !important;
+  margin: unset !important;
+}
+
 /*! cart form start  */
 
 .cart-page .cart-form {
